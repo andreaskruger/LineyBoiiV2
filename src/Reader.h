@@ -1,14 +1,14 @@
 #include <Arduino.h>
 
 
-#define s1 1
-#define s2 2
-#define s3 3
-#define s4 4
+#define s1 5
+#define s2 18
+#define s3 19
+#define s4 21
 
 
-#define sensorRead_pin 5
-int sensPins[4] = {1,2,3,4};
+#define sensorRead_pin 15
+int sensPins[4] = {5,18,19,21};
 int muxChannel[16][4]={
     {0,0,0,0}, //channel 0
     {1,0,0,0}, //channel 1
@@ -38,14 +38,6 @@ void init_lineSensor(){
     pinMode(s4,OUTPUT);
 }
 
-void readSensors(){
-    for(int j = 0; j < 15; j++){
-        for(int i = 0; i < 4; i ++){
-            digitalWrite(sensPins[i], muxChannel[j][i]);
-        }
-    lineValue[j];
-    }
-}
 
 float getValue(int index){
     return lineValue[index];
@@ -72,4 +64,13 @@ float getPosition(){
         position += lineValue[i];
     }
     return position;
+}
+void readSensors(){
+    for(int j = 0; j < 15; j++){
+        for(int i = 0; i < 4; i ++){
+            digitalWrite(sensPins[i], muxChannel[j][i]);
+        }
+    lineValue[j] = analogRead(sensorRead_pin);
+    }
+    getPosition();
 }

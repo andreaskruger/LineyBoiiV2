@@ -20,7 +20,15 @@ void setup() {
 
 void loop() {
   readSensors();
-  speed = PID_speed(position);
-  if(speed > 0){ESC1.writeMicroseconds(speed);}
-  if(speed < 0){ESC2.writeMicroseconds(speed);}
+  /*for(int i=0; i<16;i++){
+    Serial.print(lineValue[i]);
+    Serial.print(" ");
+  }*/
+  //Serial.print(position);
+  //Serial.println();
+  //Serial.println(lineValue[0]);
+  Serial.println(PID_speed(position));
+  delay(100);
+  //if(speed > 0){ESC1.writeMicroseconds(speed);}
+  //if(speed < 0){ESC2.writeMicroseconds(speed);}
 }
